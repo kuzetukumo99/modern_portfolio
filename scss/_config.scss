@@ -1,0 +1,30 @@
+$primary-color: #444;
+$secondary-color: #eece1a;
+$show-home-image: true;
+$home-image: url(../img/background.jpg);
+$background-opacity: 0.9;
+
+@mixin easeOut {//後で呼び出せるように変数設定
+  transition: all 0.5s ease-out;//色チェンジまでの時間を設定
+}
+
+@mixin background{
+  @if $show-home-image {
+    &#bg-img{
+      background: $home-image;
+      background-attachment: fixed;
+      background-size: cover;
+
+      &:after {//背景にグレーを重ねて文字が読めるようにする
+        content: '';//文字はいらないが以下のフィルターが欲しい 擬似要素。
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;//コンテントテキストを表に出すためにマイナスz-index
+        background: rgba($primary-color, $background-opacity);
+      }
+    }
+  }
+}
