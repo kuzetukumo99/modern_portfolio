@@ -29,10 +29,19 @@ $background-opacity: 0.9;
   }
 }
 
+// Set Text Color
+@function set-text-color($color) {
+  @if (lightness($color) > 40) {//背景色が40よりも明るければ
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
 // Media Query Mixins
   @mixin mediaSm {
     @media screen and (max-width: 500px) {
-    @content;//contentという名前のファイルも適用される
+    @content;//これが適用される
     }
   }
 
